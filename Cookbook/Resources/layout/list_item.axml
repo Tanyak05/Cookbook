@@ -19,7 +19,7 @@
 			android:id="@+id/textTitle"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="AAAAA"
+			android:text="AABBBBBAAA"
 			android:layout_margin="8dp" />
 	</LinearLayout>
 
