@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:rowCount="2"
+	android:columnCount="2">
+	<Button
+		android:text="Add With Url "
+		android:id="@+id/addWithUrlButton" />
+	<Button
+		android:text="Add By Text Copy"
+		android:id="@+id/addByTextCopyButtton" />
+	<Button
+		android:text="Add From Picture"
+		android:id="@+id/addFromPictureButton"
+		android:enabled="false"  />
+	<Button
+		android:text="Add Manually"
+		android:id="@+id/addManuallyButton"
+		android:enabled="false" />
+</GridLayout>

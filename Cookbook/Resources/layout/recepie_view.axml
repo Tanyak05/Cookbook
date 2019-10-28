@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<TextView
+		android:text="Ingredients List :"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/recpieHeader" />
+	<GridLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:scrollbarAlwaysDrawHorizontalTrack="false"
+		android:alignmentMode="alignMargins">
+		<Button
+			android:text="To cups"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/toCupsButton" />
+		<Button
+			android:text="To Metrics/oz"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/toUnistButton" />
+		<Spinner
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:id="@+id/portionSizeSpinner" />
+	</GridLayout>
+<!--	<ListView
+		android:minWidth="25px"
+		android:minHeight="50px"
+		android:layout_width="match_parent"
+		android:layout_height="107.0dp"
+		android:id="@+id/ingredientsListView" />-->
+	<TextView
+		android:text="Method :"
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/textView2" />
+	<android.webkit.WebView
+		android:layout_width="match_parent"
+		android:layout_height="327.0dp"
+		android:id="@+id/recepiePreview"/>
+</LinearLayout>

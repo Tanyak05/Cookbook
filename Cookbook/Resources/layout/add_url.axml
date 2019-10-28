@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:minWidth="25px"
+	android:minHeight="25px"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:id="@+id/gridLayout1"
+	android:columnCount="1"
+	android:rowCount="10">
+	<EditText
+		android:textAppearance="?android:attr/textAppearanceSmall"
+		android:id="@+id/urlToLookText" />
+	<LinearLayout
+		android:orientation="horizontal"
+		android:layout_rowSpan="1" 
+		android:id="@+id/linearLayout1">
+		<Button
+			android:text="Start  Translate"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/startTranclateRecepieButton" />
+		<Button
+			android:text="Save as is"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/saveRecepieButton" />
+		<Button
+			android:text="Start Parsing"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/startParseRecepieButton" />
+	</LinearLayout>
+	<TextView
+		android:text="Your recepie is the following:"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:id="@+id/addRecepieByUrl" />
+	<android.webkit.WebView
+		android:id="@+id/recepiePreview"
+		android:layout_height="match_parent"
+		android:layout_rowSpan="6"
+		android:minHeight="25px" />
+</GridLayout>

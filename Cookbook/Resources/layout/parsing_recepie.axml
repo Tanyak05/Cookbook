@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/tableLayout1">
+	<Toolbar
+		android:minHeight="?android:attr/actionBarSize"
+		android:background="?android:attr/colorPrimary"
+		android:minWidth="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/toolbar2">
+	</Toolbar>
+
+	<TableRow>
+		<EditText
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+          android:id="@+id/titleEdit" />
+	</TableRow>
+    <View
+        android:layout_height="2dip"
+        android:background="#FF909090"/>
+	<TableRow>
+		<ListView
+			android:id="@+id/ingredientsView"
+			
+			android:choiceMode="singleChoice"
+			android:layout_width="match_parent"
+			android:layout_height="300px" />
+	</TableRow>
+	    <View
+        android:layout_height="2dip"
+        android:background="#FF909090"/>
+	<TableRow>
+		<HtmlTextView.HtmlTextView
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:id="@+id/recepiePreview"
+			android:contextClickable="true"
+			android:saveEnabled="true"
+			android:nestedScrollingEnabled="true"
+			android:editable="true"
+			android:textIsSelectable="true"
+			 />
+	</TableRow>
+</TableLayout>
+

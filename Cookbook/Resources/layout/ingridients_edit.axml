@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout1">
+		<TextView
+			android:text="The original:"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/textView1" />
+		<TextView
+			android:text="Text"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/original" />
+	</LinearLayout>
+	<LinearLayout
+		android:orientation="horizontal"
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/linearLayout2" >
+		<TextView
+			android:text="Suggested:"
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/textView2" />
+		<TextView
+			android:text="Text"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:id="@+id/suggestedText" />
+	</LinearLayout>
+	<TableLayout
+		android:minWidth="25px"
+		android:minHeight="25px"
+		android:layout_width="fill_parent"
+		android:id="@+id/tableLayout1"
+		android:layout_height="wrap_content">
+		<TableRow
+			android:id="@+id/tableRow1">
+			<TextView
+				p4:placeholder="true"
+				android:minWidth="30px"
+				android:minHeight="30px"
+				xmlns:p4="http://xamarin.com/mono/android/designer"
+				android:id="@+id/textView3"
+				android:text="Edit"
+				android:layout_span="2" />
+		</TableRow>
+		<TableRow
+			android:id="@+id/tableRow2">
+			<TextView
+				p4:placeholder="true"
+				android:minWidth="30px"
+				android:minHeight="30px"
+				xmlns:p4="http://xamarin.com/mono/android/designer"
+				android:id="@+id/textView4"
+				android:text="Amount:" />
+			<EditText 
+				p4:placeholder="true"
+				android:minWidth="30px"
+				android:minHeight="30px"
+				xmlns:p4="http://xamarin.com/mono/android/designer"
+				android:id="@+id/amountManual"
+				android:editable="true" />
+		</TableRow>
+		<TableRow
+			android:id="@+id/tableRow3">
+			<TextView
+				p4:placeholder="true"
+				android:minWidth="30px"
+				android:minHeight="30px"
+				xmlns:p4="http://xamarin.com/mono/android/designer"
+				android:id="@+id/textView5"
+				android:text="Units" />
+			<Spinner
+				android:layout_column="1"
+				android:id="@+id/unitsSpinner" />
+		</TableRow>		
+		<TableRow
+			android:id="@+id/tableRow4">
+			<TextView
+				p4:placeholder="true"
+				android:minWidth="30px"
+				android:minHeight="30px"
+				xmlns:p4="http://xamarin.com/mono/android/designer"
+				android:id="@+id/textView6"
+				android:text="Item" />
+			<EditText 
+				p4:placeholder="true"
+				android:minWidth="30px"
+				android:minHeight="30px"
+				xmlns:p4="http://xamarin.com/mono/android/designer"
+				android:id="@+id/itemManual"/>
+		</TableRow>
+	</TableLayout>
+	<Button
+		android:text="Save"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/saveButton" />	
+	<Button
+		android:text="Cancel"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/cancelButton" />
+
+</LinearLayout>

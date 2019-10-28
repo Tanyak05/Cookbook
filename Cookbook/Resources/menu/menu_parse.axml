@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/menu_to_title"
+    android:icon="@drawable/icons8_header_1_30"
+    android:showAsAction="ifRoom"
+    android:title="To Title" />
+  <item
+    android:id="@+id/menu_to_ingr"
+    android:icon = "@drawable/icons8_list_view_50"
+    android:showAsAction="ifRoom"
+    android:title="To Ingridients" />
+  <item
+    android:id="@+id/menu_add_image"
+    android:icon="@drawable/ic_noimage"
+    android:showAsAction="ifRoom"
+    android:title="To Title" />
+  <item
+    android:id="@+id/menu_save"
+    android:icon = "@drawable/ic_action_content_save"
+    android:showAsAction="ifRoom"
+    android:title="Save" />
+</menu>
+
