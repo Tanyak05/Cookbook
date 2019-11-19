@@ -7,6 +7,7 @@ using Org.Json;
 using Android.Util;
 using Android.Views;
 using Android.App;
+using Cookbook2;
 
 
 namespace Cookbook
@@ -70,15 +71,15 @@ namespace Cookbook
 			TextView titleView = (TextView)view.FindViewById (Resource.Id.textTitle);
 			titleView.Text = item.Title;
 
-			var iv = (ImageView)view.FindViewById (Resource.Id.imageView);
-            if (item.Image != null)
-            {
-                iv.SetImageBitmap(item.Image);
-            }
-            else
-            {
-                iv.SetImageResource(Resource.Drawable.ic_noimage);
-            }
+			//var iv = (ImageView)view.FindViewById (Resource.Id.imageView);
+   //         if (item.Image != null)
+   //         {
+   //             iv.SetImageBitmap(item.Image);
+   //         }
+   //         else
+   //         {
+   //             iv.SetImageResource(Resource.Drawable.ic_noimage);
+   //         }
             return view;
 		}
 

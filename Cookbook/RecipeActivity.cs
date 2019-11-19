@@ -7,50 +7,51 @@ using Android.Views;
 using Android.Widget;
 using Org.Json;
 using Android.Views.Animations;
+using Cookbook2;
 using Path = System.IO.Path;
 
 
 namespace Cookbook
 {
-    [Activity(Label = "@string/app_name")]
-    public class ShortRecipeActivity : Activity
-    {
-        private RecipeShort recipe;
-        private ImageView imageView;
-        private TextView titleTextView;
+    //[Activity(Label = "@string/app_name")]
+    //public class ShortRecipeActivity : Activity
+    //{
+    //    private RecipeShort recipe;
+    //    private ImageView imageView;
+    //    private TextView titleTextView;
 
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            SetContentView(Resource.Layout.list_item);
+    //    protected override void OnCreate(Bundle savedInstanceState)
+    //    {
+    //        base.OnCreate(savedInstanceState);
+    //        SetContentView(Resource.Layout.list_item);
 
-            titleTextView = (TextView)FindViewById(Resource.Id.textTitle);
-            imageView = (ImageView)FindViewById(Resource.Id.recipeImageView);
-        }
+    //        titleTextView = (TextView)FindViewById(Resource.Id.textTitle);
+    //        imageView = (ImageView)FindViewById(Resource.Id.recipeImageView);
+    //    }
 
-        protected override void OnStart()
-        {
-            base.OnStart();
-            LoadRecipe();
-        }
+    //    protected override void OnStart()
+    //    {
+    //        base.OnStart();
+    //        LoadRecipe();
+    //    }
 
-        private void LoadRecipe()
-        {
-            string id = Intent.GetStringExtra(Constants.RecipeNameToLoad);
-            recipe = LocalDatabase.Database.GetItemAsync<RecipeShort>(id).Result;
-            DisplayRecipe();
-        }
+    //    private void LoadRecipe()
+    //    {
+    //        string id = Intent.GetStringExtra(Constants.RecipeNameToLoad);
+    //        recipe = LocalDatabase.Database.GetItemAsync<RecipeShort>(id).Result;
+    //        DisplayRecipe();
+    //    }
 
-        private void DisplayRecipe()
-        {
-            titleTextView.Text = recipe.Title;
+    //    private void DisplayRecipe()
+    //    {
+    //        titleTextView.Text = recipe.Title;
 
-            if (recipe.Image != null)
-            {
-                imageView.SetImageBitmap(recipe.Image);
-            }
-        }
-    }
+    //        if (recipe.Image != null)
+    //        {
+    //            imageView.SetImageBitmap(recipe.Image);
+    //        }
+    //    }
+    //}
 
     [Activity(Label = "@string/app_name")]
     public class RecipeActivity : Activity
@@ -86,37 +87,6 @@ namespace Cookbook
             LoadRecipe();
         }
 
-        private void LoadRecipe()
-        {
-            string id = Intent.GetStringExtra(Constants.RecipeNameToLoad);
-            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            documentsPath = Path.Combine(documentsPath, "recipes", id + ".json");
-
-            //JSONObject jsonObject;
-            using (StreamReader r = new StreamReader(documentsPath))
-            {
-                string json = r.ReadToEnd();
-                recipe = Newtonsoft.Json.JsonConvert.DeserializeObject<Recipe>(json);
-               //jsonObject = new JSONObject(json);
-            }
-
-            //recipe = new Recipe(jsonObject, this);
-            DisplayRecipe();
-        }
-
-        private void DisplayRecipe()
-        {
-            titleTextView.Text = recipe.RecipeShort.Title;
-
-            if (recipe.RecipeShort.Image != null)
-            {
-                //Bitmap recipeImage = AssetUtils.LoadBitmapAsset(this, recipe.Image);
-                imageView.SetImageBitmap(recipe.RecipeShort.Image);
-            }
-
-            arrayAdapter.AddAll(recipe.Ingredients);
-            methodTextView.Text = recipe.Method;
-        }
 
 
         /// <Docs>The options menu in which you place your items.</Docs>

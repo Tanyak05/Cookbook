@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Cookbook2.ViewIngredientPage">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                    <Label Text="The original:" />
+                    <Label x:Name="original" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Suggested:"/>
+                <Label Text="Text" x:Name="suggestedText" />
+            </StackLayout>
+
+            <Grid x:Name="DataGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Edit" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" />
+
+                <Label Text="Amount:" Grid.Row="1" Grid.Column="0"/>
+                <Entry Text="{Binding Amount, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
+
+                <Label Text="Units" Grid.Row="2" Grid.Column="0"/>
+                <Picker SelectedItem="{Binding Units, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" />
+
+                <Label Text="Item" Grid.Row="3" Grid.Column="0"/>
+                <Entry Text="{Binding Item, Mode=TwoWay}" Grid.Row="3" Grid.Column="1"/>
+
+            </Grid>
+
+            <Button Text="Save" Clicked="saveButton_click" />
+            <Button Text="Cancel" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

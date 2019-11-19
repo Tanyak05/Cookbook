@@ -1,61 +1,59 @@
 ﻿using Android.App;
-using Android.OS;
-using Android.Widget;
 using Android.Content;
-using Android.Webkit;
-using System;
+using Android.OS;
 using Android.Util;
-using System.Threading;
-
+using Android.Webkit;
+using Android.Widget;
+using System;
 
 namespace Cookbook
 {
 
-    [Activity(Label = "AddRecipe")]
-    public class AddRecipeActivity : Activity
-    {
-        protected override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-            // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.add_resepie);
-            Xamarin.Forms.Forms.Init(this, savedInstanceState);
+    //[Activity(Label = "AddRecipe")]
+    //public class AddRecipeActivity : Activity
+    //{
+    //    protected override void OnCreate(Bundle savedInstanceState)
+    //    {
+    //        base.OnCreate(savedInstanceState);
+    //        // Set our view from the "main" layout resource
+    //        SetContentView(Resource.Layout.add_resepie);
+    //        Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-            Button addWithUrlButton = FindViewById<Button>(Resource.Id.addWithUrlButton);
-            addWithUrlButton.Click += AddWithUrlButton_Click;
+    //        Button addWithUrlButton = FindViewById<Button>(Resource.Id.addWithUrlButton);
+    //        addWithUrlButton.Click += AddWithUrlButton_Click;
 
-            Button addFromClipboardButton = FindViewById<Button>(Resource.Id.addByTextCopyButtton);
-            addFromClipboardButton.Click += AddFromClipboardButton_Click;
+    //        Button addFromClipboardButton = FindViewById<Button>(Resource.Id.addByTextCopyButtton);
+    //        addFromClipboardButton.Click += AddFromClipboardButton_Click;
 
-            //Button addByTextCopyButtton = FindViewById<Button>(Resource.Id.addByTextCopyButtton);
-            //addWithUrlButton.Click += addByTextCopyButtton_Click;
+    //        //Button addByTextCopyButtton = FindViewById<Button>(Resource.Id.addByTextCopyButtton);
+    //        //addWithUrlButton.Click += addByTextCopyButtton_Click;
 
-        }
+    //    }
 
-        private void AddByTextCopyButton_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+    //    private void AddByTextCopyButton_Click(object sender, EventArgs e)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
 
-        private void AddWithUrlButton_Click(object sender, EventArgs e)
-        {
-            var intent = new Intent(this, typeof(AddFromUrlRecipeActivity));
-            StartActivity(intent);
-        }
+    //    private void AddWithUrlButton_Click(object sender, EventArgs e)
+    //    {
+    //        var intent = new Intent(this, typeof(AddFromUrlRecipeActivity));
+    //        StartActivity(intent);
+    //    }
 
-        private void AddFromClipboardButton_Click(object sender, EventArgs e)
-        {
-            var intent = new Intent(this, typeof(ParseRecipeActivity));
-            StartActivity(intent);
+    //    private void AddFromClipboardButton_Click(object sender, EventArgs e)
+    //    {
+    //        var intent = new Intent(this, typeof(ParseRecipeActivity));
+    //        StartActivity(intent);
 
-        }
-    }
+    //    }
+    //}
 
     [Activity(Label = "AddFromUrlRecipe")]
     internal class AddFromUrlRecipeActivity : Activity, IWebViewSelectionActivity
     {
         private TextView recipeUrl;
-        WebView recipePreview;
+        private Xamarin.Forms.WebView recipePreview;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -67,10 +65,10 @@ namespace Cookbook
             recipeUrl = FindViewById<TextView>(Resource.Id.urlToLookText);
             recipeUrl.TextChanged += RecipeUrlTextChanged;
 
-            recipePreview = FindViewById<WebView>(Resource.Id.recepiePreview);
-            recipePreview.Settings.JavaScriptEnabled = true;
+            recipePreview = FindViewById<Xamarin.Forms.WebView>(Resource.Id.recepiePreview);
+            //recipePreview.Settings.JavaScriptEnabled = true;
             //web_view.SetWebViewClient(new HelloWebViewClient());
-            recipePreview.LoadUrl("https://chadeyka.livejournal.com/216950.html");
+            recipePreview.Source ="https://chadeyka.livejournal.com/216950.html";
 
             Button paresSelectionButton = FindViewById<Button>(Resource.Id.startParseRecepieButton);
             paresSelectionButton.Click += ParesSelectionButton_Click;
@@ -88,14 +86,14 @@ namespace Cookbook
 
 
 
-       private void ParesSelectionButton_Click(object sender, EventArgs e)
+       private async void ParesSelectionButton_Click(object sender, EventArgs e)
         {
             intent = new Intent(this, typeof(ParseRecipeActivity));
 
             var resultCallback = new ValueCallback(this);
-            recipePreview.EvaluateJavascript("(function(){return window.getSelection().toString()})()",
-                resultCallback);
+            Selection = await recipePreview.EvaluateJavaScriptAsync("(function(){return window.getSelection().toString()})()");
 
+            AfterSelection();
         }
 
 
@@ -131,7 +129,7 @@ namespace Cookbook
 
         private void RecipeUrlTextChanged(object sender, Android.Text.TextChangedEventArgs e)
         {
-            recipePreview.LoadUrl(recipeUrl.Text);
+            recipePreview.Source = recipeUrl.Text;
         }
     }
 

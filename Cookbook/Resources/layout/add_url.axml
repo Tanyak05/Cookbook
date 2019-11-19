@@ -35,7 +35,7 @@
 		android:text="Your recepie is the following:"
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:id="@+id/addRecepieByUrl" />
-	<android.webkit.WebView
+	<Xamarin.Forms.WebView
 		android:id="@+id/recepiePreview"
 		android:layout_height="match_parent"
 		android:layout_rowSpan="6"

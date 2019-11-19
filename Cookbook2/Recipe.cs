@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Android.Content;
-using Org.Json;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
-using Android.Graphics;
 using Newtonsoft.Json;
 using SQLite;
 using Xamarin.Forms.Internals;
 
-namespace Cookbook
+namespace Cookbook2
 {
     [JsonObject(MemberSerialization.OptIn)]
     public class Ingredient
@@ -44,24 +43,24 @@ namespace Cookbook
             FromString(str);
         }
 
-        public Ingredient(JSONObject item)
-        {
-            FromJson(item);
-        }
+        //public Ingredient(JSONObject item)
+        //{
+        //    FromJson(item);
+        //}
 
-        public void FromJson(JSONObject item)
-        {
-            Item = item.GetString("Item");
-            Amount = item.GetDouble("Amount");
-            Units = item.OptString("Units");
-        }
+        //public void FromJson(JSONObject item)
+        //{
+        //    Item = item.GetString("Item");
+        //    Amount = item.GetDouble("Amount");
+        //    Units = item.OptString("Units");
+        //}
 
-        public void ToJson(JSONObject json)
-        {
-            json.Put("Item", Item);
-            json.Put("Amount", Amount);
-            json.PutOpt("Units", Units);
-        }
+        //public void ToJson(JSONObject json)
+        //{
+        //    json.Put("Item", Item);
+        //    json.Put("Amount", Amount);
+        //    json.PutOpt("Units", Units);
+        //}
 
         public override string ToString()
         {
@@ -76,7 +75,7 @@ namespace Cookbook
 
         public void FromString(string ingr)
         {
-            string[] temp = ingr.Split("\t", StringSplitOptions.RemoveEmptyEntries);
+            string[] temp = ingr.Split(new []{"\t"}, StringSplitOptions.RemoveEmptyEntries);
             if (temp.Length < 2)
             {
                 return;
@@ -117,6 +116,7 @@ namespace Cookbook
                     }
                 }
 
+                Unparsed = ToString();
                 return true;
             }
 
@@ -140,6 +140,7 @@ namespace Cookbook
                         Units = splittedIngrLine.Length == 3 ? splittedIngrLine[2] : "units";
                     }
                 }
+                Unparsed = ToString();
                 return true;
             }
 
@@ -238,35 +239,22 @@ namespace Cookbook
             }
         }
 
-        public static void LoadPossibleUnits(Context context)
+        public static void LoadPossibleUnits()
         {
             if (PossibleUnitsList != null)
             {
                 return;
             }
 
+            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(Ingredient)).Assembly;
+            Stream stream = assembly.GetManifestResourceStream("Cookbook2.possiblle_units_dictionary.json");
+
             PossibleUnitsList = new Dictionary<string, string[]>();
-            JSONObject jsonObject = AssetUtils.LoadJSONAsset(context, "possiblle_units_dictionary.json");
-            if (jsonObject != null)
+
+            using (var reader = new StreamReader(stream))
             {
-                JSONArray units = jsonObject.GetJSONArray("units_list");
-                for (int i = 0; i < units.Length(); i++)
-                {
-                    JSONObject unit = units.GetJSONObject(i);
-                    JSONArray jsonArray = unit.OptJSONArray("variations");
-
-                    string[] aar = null;
-                    if (jsonArray != null)
-                    {
-                        aar = new string[jsonArray.Length()];
-                        for (int j = 0; j < jsonArray.Length(); j++)
-                        {
-                            aar[j] = jsonArray.GetString(j);
-                        }
-                    }
-
-                    PossibleUnitsList.Add(unit.GetString("name"), aar);
-                }
+                var json = reader.ReadToEnd();
+                PossibleUnitsList = JsonConvert.DeserializeObject<Dictionary<string, string[]>>(json);
             }
         }
 
@@ -281,13 +269,13 @@ namespace Cookbook
         [JsonProperty]
         public string Title { get; set; }
 
-        [SQLite.Ignore]
-        public Bitmap Image { get; set; }
+        //[SQLite.Ignore]
+        //public Bitmap Image { get; set; }
 
-        public RecipeShort(JSONObject item, Context context)
-        {
-            this.FromJson(item, context);
-        }
+        //public RecipeShort(JSONObject item, Context context)
+        //{
+        //    this.FromJson(item, context);
+        //}
 
         public RecipeShort(string id, string title)
         {
@@ -299,24 +287,24 @@ namespace Cookbook
         {
         }
 
-        public void FromJson(JSONObject item, Context context)
-        {
-            Id = item.GetString(Constants.RecipeFieldId);
-            Title = item.GetString(Constants.RecipeFieldTitle);
+        //public void FromJson(JSONObject item, Context context)
+        //{
+        //    Id = item.GetString(Constants.RecipeFieldId);
+        //    Title = item.GetString(Constants.RecipeFieldTitle);
 
-            if (item.Has(Constants.RecipeFieldImage))
-            {
-                string imageFile = item.GetString(Constants.RecipeFieldImage);
-                Image = AssetUtils.LoadBitmapAsset(context, imageFile);
-            }
-        }
+        //    if (item.Has(Constants.RecipeFieldImage))
+        //    {
+        //        string imageFile = item.GetString(Constants.RecipeFieldImage);
+        //        Image = AssetUtils.LoadBitmapAsset(context, imageFile);
+        //    }
+        //}
 
-        public void ToJson(JSONObject json)
-        {
-            json.Put(Constants.RecipeFieldId, Id);
-            json.Put(Constants.RecipeFieldTitle, Title);
-            json.PutOpt(Constants.RecipeFieldImage, Image);
-        }
+        //public void ToJson(JSONObject json)
+        //{
+        //    json.Put(Constants.RecipeFieldId, Id);
+        //    json.Put(Constants.RecipeFieldTitle, Title);
+        //    json.PutOpt(Constants.RecipeFieldImage, Image);
+        //}
 
     }
 
@@ -350,35 +338,35 @@ namespace Cookbook
             Ingredients = new List<Ingredient>();
         }
 
-        public Recipe(JSONObject json, Context context)
-        {
-            RecipeShort = new RecipeShort(json, context);
-            FromJson(json);
-        }
+        //public Recipe(JSONObject json, Context context)
+        //{
+        //    RecipeShort = new RecipeShort(json, context);
+        //    FromJson(json);
+        //}
 
-        public void FromJson(JSONObject json)
-        {
+        //public void FromJson(JSONObject json)
+        //{
 
-            Method = json.OptString(Constants.RecipeFieldMethod);
+        //    Method = json.OptString(Constants.RecipeFieldMethod);
 
-            ingredients = new List<Ingredient>();
-            JSONArray ingredientsJson = json.GetJSONArray(Constants.RecipeFieldIngredients);
-            for (int i = 0; i < ingredientsJson.Length(); i++)
-            {
-                JSONObject ingredient = ingredientsJson.GetJSONObject(i);
-                ingredients.Add(new Ingredient(ingredient));
-                IngredientsText += " - " + ingredient + "\n";
-            }
+        //    ingredients = new List<Ingredient>();
+        //    JSONArray ingredientsJson = json.GetJSONArray(Constants.RecipeFieldIngredients);
+        //    for (int i = 0; i < ingredientsJson.Length(); i++)
+        //    {
+        //        JSONObject ingredient = ingredientsJson.GetJSONObject(i);
+        //        ingredients.Add(new Ingredient(ingredient));
+        //        IngredientsText += " - " + ingredient + "\n";
+        //    }
 
-        }
+        //}
 
-        public void ToJson(JSONObject json)
-        {
-            RecipeShort.ToJson(json);
-            JSONArray ingredientsJason = new JSONArray(Ingredients);
-            json.Put(Constants.RecipeFieldIngredients, ingredientsJason);
-            json.Put(Constants.RecipeFieldMethod, Method);
-        }
+        //public void ToJson(JSONObject json)
+        //{
+        //    RecipeShort.ToJson(json);
+        //    JSONArray ingredientsJason = new JSONArray(Ingredients);
+        //    json.Put(Constants.RecipeFieldIngredients, ingredientsJason);
+        //    json.Put(Constants.RecipeFieldMethod, Method);
+        //}
 
 
         //public Bundle ToBundle()

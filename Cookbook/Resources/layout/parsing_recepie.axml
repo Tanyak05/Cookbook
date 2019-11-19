@@ -34,7 +34,7 @@
         android:layout_height="2dip"
         android:background="#FF909090"/>
 	<TableRow>
-		<HtmlTextView.HtmlTextView
+    <Xamarin.Forms.WebView
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:id="@+id/recepiePreview"
