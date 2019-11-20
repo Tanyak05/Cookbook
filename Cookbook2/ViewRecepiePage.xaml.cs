@@ -13,43 +13,40 @@ namespace Cookbook2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewRecepiePage : ContentPage
     {
-        public ViewRecepiePage()
+        public Recipe recipe { get; set; }
+
+        public ViewRecepiePage(RecipeShort shortRecipe)
         {
-            //InitializeComponent();
-            LoadRecipe();
+            InitializeComponent();
+            LoadRecipe(shortRecipe);
         }
 
-        private void LoadRecipe()
+        private void LoadRecipe(RecipeShort shortRecipe)
         {
             //string id = Intent.GetStringExtra(Constants.RecipeNameToLoad);
-            //string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
-            //documentsPath = Path.Combine(documentsPath, "recipes", id + ".json");
+            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            documentsPath = Path.Combine(documentsPath, "recipes", shortRecipe.Id + ".json");
 
-            ////JSONObject jsonObject;
-            //using (StreamReader r = new StreamReader(documentsPath))
-            //{
-            //    string json = r.ReadToEnd();
-            //    recipe = Newtonsoft.Json.JsonConvert.DeserializeObject<Recipe>(json);
-            //    //jsonObject = new JSONObject(json);
-            //}
+            using (StreamReader r = new StreamReader(documentsPath))
+            {
+                string json = r.ReadToEnd();
+                recipe = Newtonsoft.Json.JsonConvert.DeserializeObject<Recipe>(json);
+            }
 
-            ////recipe = new Recipe(jsonObject, this);
-            //DisplayRecipe();
+            DisplayRecipe();
         }
 
         private void DisplayRecipe()
         {
-            //titleTextView.Text = recipe.RecipeShort.Title;
+            recipeTextTitle.Text = recipe.RecipeShort.Title;
 
             //if (recipe.RecipeShort.Image != null)
             //{
             //    //Bitmap recipeImage = AssetUtils.LoadBitmapAsset(this, recipe.Image);
             //    imageView.SetImageBitmap(recipe.RecipeShort.Image);
             //}
-
-            //arrayAdapter.AddAll(recipe.Ingredients);
-            //methodTextView.Text = recipe.Method;
+            textIngredients.BindingContext = recipe.Ingredients;
+            textMethod.Source = new HtmlWebViewSource() { Html = recipe.Method};
         }
-
     }
 }

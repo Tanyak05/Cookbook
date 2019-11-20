@@ -42,17 +42,17 @@ namespace Cookbook2
             LocalDatabase.Database.CreateTable<RecipeShort>();
         }
 
-        async void Handle_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        async void Handle_ItemSelected(object sender, ItemTappedEventArgs itemTappedEventArgs)
         {
-            if (e.SelectedItem == null)
+            if (((ListView)sender).SelectedItem == null)
                 return;
 
-            await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
+            //await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
 
-            await Navigation.PushAsync(new ViewRecepiePage());
+            await Navigation.PushAsync(new NavigationPage( new ViewRecepiePage((RecipeShort) itemTappedEventArgs.Item)));
 
-            //Deselect Item
-            ((ListView)sender).SelectedItem = null;
+            ////Deselect Item
+            //((ListView)sender).SelectedItem = null;
         }
 
         //protected void OnListItemClick(object sender, AdapterView.ItemClickEventArgs itemClickEventArgs)

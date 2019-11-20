@@ -13,7 +13,7 @@
             <Button x:Name ="AddWithUrl"       Text="Add With Url "    Clicked="AddWithUrlButton_Click"       IsVisible="True" />
             <Button x:Name ="AddWithClipboard" Text="Add By Text Copy" Clicked="AddFromClipboardButton_Click" IsVisible="True"/>
 
-           <ListView  x:Name="ShortRecipeList">
+            <ListView  x:Name="ShortRecipeList" ItemTapped="Handle_ItemSelected">
                 <ListView.Header>
                     <StackLayout Padding="10" 
                                 Orientation="Horizontal"

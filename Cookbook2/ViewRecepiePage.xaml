@@ -3,46 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Cookbook2"
              mc:Ignorable="d"
              x:Class="Cookbook2.ViewRecepiePage">
 
-    <ContentPage.Content>
+        <StackLayout Orientation="Horizontal">
+            <Frame BorderColor="#31756E">
+                <RelativeLayout>
+                <Image x:Name="recipeImageView" Source="@drawable/ic_noimage" />
+                <Label x:Name="recipeTextTitle"/>
+            </RelativeLayout>
+            </Frame>
 
-        <StackLayout>
-        <RelativeLayout>
-            <Image
-			    x:Name="recipeImageView"
-                Source="@drawable/ic_noimage" />
-			<!--android:layout_width="100dp"
-			android:layout_height="100dp"-->
+            <ListView x:Name="textIngredients" HorizontalOptions="FillAndExpand" >
+				<ListView.SelectedItem>
+					<local:RecipeShort/>
+				</ListView.SelectedItem>
+                <ListView.Header>
+                    <StackLayout 
+                        Orientation="Horizontal"
+                        HorizontalOptions="FillAndExpand"
+                        BackgroundColor="#dadada">
+                        <Label Text="Ingredients"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="FillAndExpand"
+                               TextColor="Black"
+                               FontAttributes="Bold"/>
+                    </StackLayout>
+                </ListView.Header>
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <EntryCell Text="{Binding Unparsed}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
 
-            <Entry x:Name="recipeTextTitle"/>
+        <Frame BorderColor="Aqua"><WebView x:Name="textMethod"/></Frame>
+            
+            
 
-			<!--text="Title"
-			textAlignment="viewEnd"
-			android:layout_marginTop="50dp"
-			android:background="#22000000"
-			android:padding="12dp"
-			android:textSize="22sp"
-			android:gravity="fill_horizontal|center_vertical"
-			android:textStyle="bold"
-			android:layout_gravity="right" />-->
-        </RelativeLayout>
-
-
-            <ListView
-			 x:Name="textIngredients" />
-			<!--android:layout_width="match_parent"
-			android:layout_height="200dp"
-			android:textSize="10sp"
-			android:fitsSystemWindows="false" />-->
-        
-
-
-        <ScrollView>
-            <WebView x:Name="textMethod"/>
-        </ScrollView>
         </StackLayout>
-    </ContentPage.Content>
 
 </ContentPage>
