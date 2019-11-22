@@ -26,7 +26,6 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-
         <Grid >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -34,9 +33,9 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <Entry x:Name="titleEdit" Text="Title" Grid.Column="0" Grid.Row="0"/>
+            <Entry x:Name="TitleEdit" Text="Title" Grid.Column="0" Grid.Row="0"/>
 
-            <ListView x:Name="ingredientsView"   SelectionMode="Single" ItemTapped="EditIngredientsButtonOnClick" Grid.Column="0" Grid.Row="1" HasUnevenRows="True">
+            <ListView x:Name="IngredientsView"   SelectionMode="Single" ItemTapped="EditIngredientsButtonOnClick" Grid.Column="0" Grid.Row="1" HasUnevenRows="True">
                 <ListView.Header>
                     <Label Text="Ingredients"
                                HorizontalTextAlignment="Center"
@@ -49,16 +48,9 @@
                 </ListView.ItemTemplate>-->
                 </ListView>
 
-            <Frame BorderColor="Red" Grid.Column="0" Grid.Row="2">
-                <WebView x:Name="recepiePreview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                         HeightRequest="1000" WidthRequest="1000"/>
-            </Frame>                
-                    <!--android:contextClickable="true"
-                    android:saveEnabled="true"
-                    android:nestedScrollingEnabled="true"
-                    android:editable="true"
-                    android:textIsSelectable="true"-->        
-        </Grid>
+            <WebView x:Name="RecipePreview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                     HeightRequest="1000" WidthRequest="1000" Grid.Column="0" Grid.Row="2" />
 
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

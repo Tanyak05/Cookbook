@@ -8,10 +8,9 @@
 
     <ContentPage.Content>
         <StackLayout>
-
             <StackLayout Orientation="Horizontal">
-                    <Label Text="The original:" />
-                    <Label x:Name="original" />
+                <Label Text="The original:" />
+                <Label x:Name="Original" />
             </StackLayout>
 
             <StackLayout Orientation="Horizontal">
@@ -43,9 +42,10 @@
                 <Entry Text="{Binding Item, Mode=TwoWay}" Grid.Row="3" Grid.Column="1"/>
 
             </Grid>
-
-            <Button Text="Save" Clicked="saveButton_click" />
-            <Button Text="Cancel" />
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Save" Clicked="saveButton_click" />
+                <Button Text="Cancel" />
+            </StackLayout>
 
         </StackLayout>
     </ContentPage.Content>

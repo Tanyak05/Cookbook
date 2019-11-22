@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,13 +8,13 @@ namespace Cookbook2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewIngredientPage : ContentPage
     {
-        public Ingredient ingredient { get; set; }
+        public Ingredient Ingredient { get; set; }
 
         public ViewIngredientPage(Ingredient item)
         {
             InitializeComponent();
-            ingredient = item;
-            DataGrid.BindingContext = ingredient;
+            Ingredient = item;
+            DataGrid.BindingContext = Ingredient;
             UnitsPicker.ItemsSource = Ingredient.PossibleUnitsList.Keys.ToList();
             LoadIngredient();
        }
@@ -26,10 +22,10 @@ namespace Cookbook2
         private void LoadIngredient()
         {
             
-            if (ingredient != null)
+            if (Ingredient != null)
             {
-                original.Text = ingredient.Unparsed;
-                suggestedText.Text = ingredient.Unparsed;
+                Original.Text = Ingredient.Unparsed;
+                suggestedText.Text = Ingredient.Unparsed;
             }
 
             //if (ingredient.Amount == 0)
@@ -70,13 +66,6 @@ namespace Cookbook2
 
         private void saveButton_click(object sender, EventArgs e)
         {
-            //if (ingredient == null)
-            //    ingredient = new Ingredient();
-
-            //ingredient.Amount = Double.Parse(amountManual.Text); //TODO - make tryparse and worning
-            //ingredient.Item = itemManual.Text;
-            //ingredient.Units = (string)unitsSpinner.SelectedItem;
-            //base.OnBackPressed();
             Navigation.PopAsync();
         }
 
@@ -86,20 +75,5 @@ namespace Cookbook2
         //    ingredient.Units = spinner.GetItemAtPosition(e.Position).ToString();
         //}
 
-
-        //private void AssighnFormFields()
-        //{
-        //    //if (original.Text == null)
-        //    //{
-        //    //    original.Text = ingredient.ToString();
-        //    //}
-
-        //    //suggestedText.Text = ingredient.ToString();
-
-        //    //amountManual.Text = ingredient.Amount.ToString();
-
-        //    //unitsSpinner.SetSelection(((ArrayAdapter<string>)(unitsSpinner.Adapter)).GetPosition(ingredient.Units));
-        //    //itemManual.Text = ingredient.Item.ToString();
-        //}
     }
 }

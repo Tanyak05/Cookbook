@@ -68,7 +68,4 @@ namespace Cookbook2
             return connectionAsync.DeleteAsync(item);
         }
     }
-
-
-
 }

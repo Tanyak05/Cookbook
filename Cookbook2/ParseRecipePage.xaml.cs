@@ -14,18 +14,16 @@ namespace Cookbook2
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ParseRecipePage : ContentPage
 	{
-        //public ToolbarItem Toolbar { get; set; }
-        public ObservableCollection<Ingredient> ingredients { get; set; } 
+        public ObservableCollection<Ingredient> Ingredients { get; set; } 
         private HtmlWebViewSource htmlSource;
 
         public ParseRecipePage ()
         {
             InitializeComponent ();
-            ingredients = new ObservableCollection<Ingredient>();
-            ingredientsView.ItemsSource = ingredients;
+            Ingredients = new ObservableCollection<Ingredient>();
+            IngredientsView.ItemsSource = Ingredients;
             LoadData();
         }
-
 
         private  void LoadData()
         {
@@ -48,10 +46,10 @@ namespace Cookbook2
                 recipeText = recipeText.Replace("\n", "<br>");
             }
 
-            htmlSource = new HtmlWebViewSource();
-            htmlSource.BaseUrl = DependencyService.Get<IBaseUrl>().Get();
-
-            htmlSource.Html = @"<html>
+            htmlSource = new HtmlWebViewSource
+            {
+                BaseUrl = DependencyService.Get<IBaseUrl>().Get(),
+                Html = @"<html>
                                 <head>
                                     <meta charset=""utf - 8"">
 <link href=""https://www.jqueryscript.net/css/jquerysctipttop.css"" rel=""stylesheet"" type=""text/css"">
@@ -69,9 +67,10 @@ namespace Cookbook2
                                     });
                                 </script>
                                 </body>
-                                </html>";
+                                </html>"
+            };
 
-            recepiePreview.Source = htmlSource; //DependencyService.Get<IBaseUrl>().Get();
+            RecipePreview.Source = htmlSource; 
         }
 
         public void EditIngredientsButtonOnClick(object sender, ItemTappedEventArgs itemTappedEventArgs)
@@ -94,14 +93,14 @@ namespace Cookbook2
             }
 
             string value = @"<textarea class=""content"" name=""example"">";
-            int start = htmlSource.Html.IndexOf(value) + value.Length;
-            int end = htmlSource.Html.IndexOf("</textarea>");
+            int start = htmlSource.Html.IndexOf(value, StringComparison.Ordinal) + value.Length;
+            int end = htmlSource.Html.IndexOf("</textarea>", StringComparison.Ordinal);
 
             Recipe res = new Recipe
             {
-                RecipeShort = new RecipeShort(Guid.NewGuid().ToString(), titleEdit.Text),
+                RecipeShort = new RecipeShort(Guid.NewGuid().ToString(), TitleEdit.Text),
                 Method = htmlSource.Html.Substring(start,end-start+1),
-                Ingredients = ingredients.ToList()
+                Ingredients = Ingredients.ToList()
             };
 
             string recipeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(res);
@@ -112,7 +111,6 @@ namespace Cookbook2
             {
                 file.Write(recipeSerialized);
             }
-
             await LocalDatabase.Database.SaveItemAsync<RecipeShort>(res.RecipeShort);
 
             await Navigation.PopAsync();
@@ -122,16 +120,13 @@ namespace Cookbook2
 
         private async void ExtractTitleButton_Click(object sender, EventArgs e)
         {
-
-            titleEdit.Text = await recepiePreview.EvaluateJavaScriptAsync("(function(){return window.getSelection().toString()})()");
-            htmlSource.Html = htmlSource.Html.Replace(titleEdit.Text, "");
-
+            TitleEdit.Text = await RecipePreview.EvaluateJavaScriptAsync("(function(){return window.getSelection().toString()})()");
+            htmlSource.Html = htmlSource.Html.Replace(TitleEdit.Text, "");
         }
-
 
         private async void IngredientsButton_Click(object sender, EventArgs e)
         {
-            string substring = await recepiePreview.EvaluateJavaScriptAsync("(function(){return window.getSelection().toString()})()");
+            string substring = await RecipePreview.EvaluateJavaScriptAsync("(function(){return window.getSelection().toString()})()");
 
             if (substring == null)
             {
@@ -139,7 +134,6 @@ namespace Cookbook2
             }
 
             htmlSource.Html = htmlSource.Html.Replace(substring, "");
-
             string[] all = substring.Split(new string[] { "\n", "\\n", @"\\n" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string s in all)
             {
@@ -148,20 +142,15 @@ namespace Cookbook2
                 {
                     ingr.Unparsed = s;
                 }
-                ingredients.Add(ingr);
+                Ingredients.Add(ingr);
             }
-
-            ingredientsView.ItemsSource = ingredients;
-
+            IngredientsView.ItemsSource = Ingredients;
         }
-
 
         private void AddImageButton_Click(object sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
-
     }
-
-    
+ 
 }

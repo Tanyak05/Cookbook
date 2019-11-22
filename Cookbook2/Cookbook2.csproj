@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="AddRecepie.cs" />
+    <Compile Remove="AssetUtils.cs" />
+    <Compile Remove="Constants.cs" />
+    <Compile Remove="Services\AzureDataStore.cs" />
     <Compile Remove="Views\AboutPage.xaml.cs" />
     <Compile Remove="Views\MenuPage.xaml.cs" />
   </ItemGroup>
@@ -39,6 +43,9 @@
     <Compile Update="ParseRecipePage.xaml.cs">
       <DependentUpon>ParseRecipePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="ViewRecipePage.xaml.cs">
+      <DependentUpon>ViewRecipePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -54,7 +61,7 @@
     <EmbeddedResource Update="ViewIngridientPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ViewRecepiePage.xaml">
+    <EmbeddedResource Update="ViewRecipePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -69,5 +76,11 @@
     <None Update="ViewRecepiePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
   </ItemGroup>
 </Project>

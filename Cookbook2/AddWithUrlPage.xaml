@@ -13,20 +13,16 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="urlToLookText" 
+            <Entry x:Name="UrlToLookText" 
                    Placeholder="Put recipe link here" 
-                   Completed="RecipeUrlTextChanged"
+                   Completed="UrlTextChanged"
                    Keyboard="Url"/>
-            <!--<StackLayout Orientation="Horizontal">
-                <Button Text="Start  Translate" />
-                <Button Text="Save as is" />
-                <Button Text="Start Parsing" Clicked="ParesSelectionButton_Click"/>
-            </StackLayout>-->
+
             <Label Text="Your recipe is the following:" />
-            <Label x:Name="labelLoading" Text="Loading..." IsVisible="false" />
-            <WebView x:Name="recepiePreview" 
+            <Label x:Name="LabelLoading" Text="Loading..." IsVisible="false" />
+            <WebView x:Name="RecipePreview" 
                      HeightRequest="1000" WidthRequest="1000"
-                     Navigated="webviewNavigated" Navigating="webviewNavigating" 
+                     Navigated="WebViewNavigated" Navigating="WebViewNavigating" 
                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>

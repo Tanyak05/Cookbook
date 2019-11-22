@@ -7,30 +7,13 @@
              x:Class="Cookbook2.MainPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add With Url "    Clicked="AddWithUrlButton_Click" />
-        <ToolbarItem Text="Add By Text Copy" Clicked="AddFromClipboardButton_Click" />
+        <ToolbarItem Text="From Url "    Clicked="AddWithUrlButton_Click" />
+        <ToolbarItem Text="From Clipboard" Clicked="AddFromClipboardButton_Click" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
-
-            <!--<Button x:Name ="AddWithUrl"       Text="Add With Url "    Clicked="AddWithUrlButton_Click"       IsVisible="True" />
-            <Button x:Name ="AddWithClipboard" Text="Add By Text Copy" Clicked="AddFromClipboardButton_Click" IsVisible="True"/>-->
-
             <ListView  x:Name="ShortRecipeList" ItemTapped="Handle_ItemSelected">
-                <ListView.Header>
-                    <StackLayout Padding="10" 
-                                Orientation="Horizontal"
-                                HorizontalOptions="FillAndExpand"
-                                BackgroundColor="#dadada">
-                        <Label Text="AAAA"
-                               HorizontalTextAlignment="Center"
-                               HorizontalOptions="FillAndExpand"
-                               TextColor="Black"
-                               FontAttributes="Bold"/>
-                    </StackLayout>
-                </ListView.Header>
-
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -71,7 +54,3 @@
     </ContentPage.Content>
 
 </ContentPage>
-
-<!--android:id="@+id/addByTextCopyButtton" />-->
-<!--android:id="@+id/addFromPictureButton"-->
-<!--android:id="@+id/addManuallyButton"--> 
