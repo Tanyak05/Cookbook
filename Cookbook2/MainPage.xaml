@@ -6,12 +6,16 @@
              mc:Ignorable="d"
              x:Class="Cookbook2.MainPage">
 
-    <ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add With Url "    Clicked="AddWithUrlButton_Click" />
+        <ToolbarItem Text="Add By Text Copy" Clicked="AddFromClipboardButton_Click" />
+    </ContentPage.ToolbarItems>
 
+    <ContentPage.Content>
         <StackLayout>
-            
-            <Button x:Name ="AddWithUrl"       Text="Add With Url "    Clicked="AddWithUrlButton_Click"       IsVisible="True" />
-            <Button x:Name ="AddWithClipboard" Text="Add By Text Copy" Clicked="AddFromClipboardButton_Click" IsVisible="True"/>
+
+            <!--<Button x:Name ="AddWithUrl"       Text="Add With Url "    Clicked="AddWithUrlButton_Click"       IsVisible="True" />
+            <Button x:Name ="AddWithClipboard" Text="Add By Text Copy" Clicked="AddFromClipboardButton_Click" IsVisible="True"/>-->
 
             <ListView  x:Name="ShortRecipeList" ItemTapped="Handle_ItemSelected">
                 <ListView.Header>
@@ -28,16 +32,16 @@
                 </ListView.Header>
 
                 <ListView.ItemTemplate>
-                  <DataTemplate>
-                    <ViewCell>
-                      <StackLayout Orientation="Horizontal">
-                          <Image VerticalOptions="CenterAndExpand"
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image VerticalOptions="CenterAndExpand"
                                  HorizontalOptions="Start"
                                  Source="icons/ic_noimage.png"/>
-                          <Label Text="{Binding Title}"/>
-                      </StackLayout>
-                    </ViewCell>
-                  </DataTemplate>
+                                <Label Text="{Binding Title}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
 
@@ -51,11 +55,13 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional"  
                 AbsoluteLayout.LayoutBounds=".65,.65,80,80" >
                 <Button x:Name ="AddWithUrl" Text="Add With Url " Clicked="AddWithUrlButton_Click" IsVisible="True" >
-                    --><!--<Button.Triggers>
+                    -->
+            <!--<Button.Triggers>
                         <DataTrigger TargetType="Button"  Binding="{Binding Source={x:Reference AddButton}, Path=IsPressed}" Value="True">
                             <Setter Property="IsVisible" Value="true" />
                         </DataTrigger>
-                    </Button.Triggers>--><!--
+                    </Button.Triggers>-->
+            <!--
                 </Button>
 
                 <Button x:Name ="AddWithPicture" Text="Add From Picture" Clicked="AddFromPictureButton_Click" IsEnabled="False" IsVisible="False"  />
@@ -67,5 +73,5 @@
 </ContentPage>
 
 <!--android:id="@+id/addByTextCopyButtton" />-->
-                        <!--android:id="@+id/addFromPictureButton"-->
+<!--android:id="@+id/addFromPictureButton"-->
 <!--android:id="@+id/addManuallyButton"--> 

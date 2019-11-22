@@ -49,7 +49,7 @@ namespace Cookbook2
 
             //await DisplayAlert("Selected", e.SelectedItem.ToString(), "OK");
 
-            await Navigation.PushAsync(new NavigationPage( new ViewRecepiePage((RecipeShort) itemTappedEventArgs.Item)));
+            await Navigation.PushAsync( new ViewRecepiePage((RecipeShort) itemTappedEventArgs.Item));
 
             ////Deselect Item
             //((ListView)sender).SelectedItem = null;
@@ -75,7 +75,7 @@ namespace Cookbook2
         {
             //var intent = new Intent(this, typeof(AddFromUrlRecipeActivity));
             //StartActivity(intent);
-            await Navigation.PushAsync(new NavigationPage(new AddWithUrlPage()));
+            await Navigation.PushAsync(new AddWithUrlPage());
         }
 
         private async void AddFromClipboardButton_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace Cookbook2
             //var intent = new Intent(this, typeof(ParseRecipeActivity));
             //StartActivity(intent);
             
-            await Navigation.PushAsync(new NavigationPage(new ParseRecipePage()));
+            await Navigation.PushAsync(new ParseRecipePage());
 
         }
 

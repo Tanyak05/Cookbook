@@ -7,9 +7,9 @@
             xmlns:views="clr-namespace:Cookbook2.Views"
             x:Class="Cookbook2.Views.MainPage">
 
-    <MasterDetailPage.Master>
+    <!--<MasterDetailPage.Master>
         <views:MenuPage />
-    </MasterDetailPage.Master>
+    </MasterDetailPage.Master>-->
 
     <MasterDetailPage.Detail>
         <NavigationPage>

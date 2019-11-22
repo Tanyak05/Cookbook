@@ -13,12 +13,13 @@ namespace Cookbook2
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ViewRecepiePage : ContentPage
     {
-        public Recipe recipe { get; set; }
+        public Recipe Recipe { get; set; }
 
         public ViewRecepiePage(RecipeShort shortRecipe)
         {
             InitializeComponent();
             LoadRecipe(shortRecipe);
+            DisplayRecipe();
         }
 
         private void LoadRecipe(RecipeShort shortRecipe)
@@ -30,23 +31,28 @@ namespace Cookbook2
             using (StreamReader r = new StreamReader(documentsPath))
             {
                 string json = r.ReadToEnd();
-                recipe = Newtonsoft.Json.JsonConvert.DeserializeObject<Recipe>(json);
+                Recipe = Newtonsoft.Json.JsonConvert.DeserializeObject<Recipe>(json);
             }
-
-            DisplayRecipe();
         }
 
         private void DisplayRecipe()
         {
-            recipeTextTitle.Text = recipe.RecipeShort.Title;
+            recipeTextTitle.Text = Recipe.RecipeShort.Title;
 
             //if (recipe.RecipeShort.Image != null)
             //{
             //    //Bitmap recipeImage = AssetUtils.LoadBitmapAsset(this, recipe.Image);
             //    imageView.SetImageBitmap(recipe.RecipeShort.Image);
             //}
-            textIngredients.BindingContext = recipe.Ingredients;
-            textMethod.Source = new HtmlWebViewSource() { Html = recipe.Method};
+            textIngredients.BindingContext = Recipe.Ingredients;
+            textIngredients.ItemsSource = Recipe.Ingredients;
+            textMethod.Source = new HtmlWebViewSource() { Html = Recipe.Method};
+
+        }
+
+        private void EditRecipePage(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

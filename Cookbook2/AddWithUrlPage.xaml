@@ -5,25 +5,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              x:Class="Cookbook2.AddWithUrlPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Start  Translate"/>
+        <ToolbarItem Text="Save"/>
+        <ToolbarItem Text="Start Parsing" Clicked="ParesSelectionButton_Click" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
-            <Entry x:Name="urlToLookText" Placeholder="Put recipe link here" Completed="RecipeUrlTextChanged"
+            <Entry x:Name="urlToLookText" 
+                   Placeholder="Put recipe link here" 
+                   Completed="RecipeUrlTextChanged"
                    Keyboard="Url"/>
-            <StackLayout Orientation="Horizontal">
+            <!--<StackLayout Orientation="Horizontal">
                 <Button Text="Start  Translate" />
                 <Button Text="Save as is" />
                 <Button Text="Start Parsing" Clicked="ParesSelectionButton_Click"/>
-            </StackLayout>
+            </StackLayout>-->
             <Label Text="Your recipe is the following:" />
             <Label x:Name="labelLoading" Text="Loading..." IsVisible="false" />
-            <!--<WebView HeightRequest="1000" WidthRequest="1000" Source="http://www.xamarin.com" Navigated="webviewNavigated" Navigating="webviewNavigating" />-->
-            
-            <!--<ScrollView VerticalScrollBarVisibility="Always" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">-->
-                <WebView x:Name="recepiePreview" 
-                      Navigated="webviewNavigated" Navigating="webviewNavigating" 
-                      HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                      Source="https://www.linkedin.com/notifications/" />
-        <!--</ScrollView>-->
+            <WebView x:Name="recepiePreview" 
+                     HeightRequest="1000" WidthRequest="1000"
+                     Navigated="webviewNavigated" Navigating="webviewNavigating" 
+                     HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 

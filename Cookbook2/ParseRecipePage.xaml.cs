@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -17,25 +18,24 @@ namespace Cookbook2
         public ObservableCollection<Ingredient> ingredients { get; set; } 
         private HtmlWebViewSource htmlSource;
 
-
         public ParseRecipePage ()
         {
             InitializeComponent ();
             ingredients = new ObservableCollection<Ingredient>();
             ingredientsView.ItemsSource = ingredients;
+            LoadData();
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
 
-            string recipeText = (string)BindingContext;
+        private  void LoadData()
+        {
+            string recipeText = (string) BindingContext;
 
             if (recipeText == null)
             {
                 if (Clipboard.HasText)
                 {
-                    recipeText = await Clipboard.GetTextAsync();
+                    recipeText = Clipboard.GetTextAsync().Result;
                     recipeText = recipeText.Replace("\n", "<br>");
                 }
                 else
@@ -43,9 +43,10 @@ namespace Cookbook2
                     recipeText = "";
                 }
             }
-
-            //htmlSource = new HtmlWebViewSource { Html = $"<html><body><textarea class=\"content\" name=\"example\">{ recipeText }</textarea></body></html>" };
-            //recepiePreview.Source = htmlSource;
+            else
+            {
+                recipeText = recipeText.Replace("\n", "<br>");
+            }
 
             htmlSource = new HtmlWebViewSource();
             htmlSource.BaseUrl = DependencyService.Get<IBaseUrl>().Get();
@@ -61,7 +62,7 @@ namespace Cookbook2
                 <script src = ""jquery.richtext.js""></script>
                                            </head>
                                 <body>
-                                <textarea class=""content"" name=""example"">"+ recipeText + @"</textarea>
+                                <textarea class=""content"" name=""example"">" + recipeText + @"</textarea>
                                 <script>
                                     $(document).ready(function() {
                                         $('.content').richText();
@@ -75,18 +76,12 @@ namespace Cookbook2
 
         public void EditIngredientsButtonOnClick(object sender, ItemTappedEventArgs itemTappedEventArgs)
         {
-            //Toast.MakeText(Application, ((TextView)args.View).Text, ToastLength.Short).Show();
-
-            //var intent = new Intent(this, typeof(IngredientActivity));
-            //intent.PutExtra(Constants.IngredientString, ((TextView)args.View).Text);
-            //JSONObject json = new JSONObject();
-            //ingredients[args.Position].ToJson(json);
-            //intent.PutExtra(Constants.Ingredient, json.ToString());
-            //StartActivity(intent);
-
             ViewIngredientPage viewIngredientPage = new ViewIngredientPage((Ingredient) itemTappedEventArgs.Item);
+            //viewIngredientPage.Disappearing += (o, args) => { 
+            //    ingredients.Add(viewIngredientPage.ingredient);
+            //};
 
-            Navigation.PushAsync(new NavigationPage(viewIngredientPage));
+            Navigation.PushAsync(viewIngredientPage);
         }
 
         public async void SaveButton_Click(object sender, EventArgs e)
@@ -98,10 +93,14 @@ namespace Cookbook2
                 Directory.CreateDirectory(documentsPath);
             }
 
+            string value = @"<textarea class=""content"" name=""example"">";
+            int start = htmlSource.Html.IndexOf(value) + value.Length;
+            int end = htmlSource.Html.IndexOf("</textarea>");
+
             Recipe res = new Recipe
             {
                 RecipeShort = new RecipeShort(Guid.NewGuid().ToString(), titleEdit.Text),
-                Method = htmlSource.Html,
+                Method = htmlSource.Html.Substring(start,end-start+1),
                 Ingredients = ingredients.ToList()
             };
 
@@ -141,7 +140,7 @@ namespace Cookbook2
 
             htmlSource.Html = htmlSource.Html.Replace(substring, "");
 
-            string[] all = substring.Split(new string[]{"\n","\\n",@"\\n"}, StringSplitOptions.RemoveEmptyEntries);
+            string[] all = substring.Split(new string[] { "\n", "\\n", @"\\n" }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string s in all)
             {
                 Ingredient ingr = new Ingredient();

@@ -19,6 +19,7 @@ namespace Cookbook2
             InitializeComponent();
             ingredient = item;
             DataGrid.BindingContext = ingredient;
+            UnitsPicker.ItemsSource = Ingredient.PossibleUnitsList.Keys.ToList();
             LoadIngredient();
        }
 

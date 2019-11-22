@@ -7,13 +7,20 @@
              mc:Ignorable="d"
              x:Class="Cookbook2.ViewRecepiePage">
 
-        <StackLayout Orientation="Horizontal">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Edit" Clicked="EditRecipePage" 
+        />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Orientation="Vertical">
             <Frame BorderColor="#31756E">
-                <RelativeLayout>
-                <Image x:Name="recipeImageView" Source="@drawable/ic_noimage" />
+            <StackLayout Orientation="Horizontal">
+                <Image x:Name="recipeImageView" Source="@drawable/ic_noimage" HeightRequest="20" WidthRequest="20" />
                 <Label x:Name="recipeTextTitle"/>
-            </RelativeLayout>
+            </StackLayout>
             </Frame>
+
 
             <ListView x:Name="textIngredients" HorizontalOptions="FillAndExpand" >
 				<ListView.SelectedItem>
@@ -31,16 +38,13 @@
                                FontAttributes="Bold"/>
                     </StackLayout>
                 </ListView.Header>
-                <ListView.ItemTemplate >
-                    <DataTemplate>
-                        <EntryCell Text="{Binding Unparsed}" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+
             </ListView>
 
-        <Frame BorderColor="Aqua"><WebView x:Name="textMethod"/></Frame>
-            
-            
+            <Frame BorderColor="Aqua" CornerRadius="25">
+                <WebView x:Name="textMethod" WidthRequest="1000" HeightRequest="1000" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
+            </Frame>
+
 
         </StackLayout>
 

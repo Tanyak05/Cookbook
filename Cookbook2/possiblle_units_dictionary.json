@@ -3,7 +3,8 @@
   "teaspoon": [ "teaspoons", "tsp.", "ts.", "tspn.", "t." ],
   "Tablespoon": [ "Tablespoons", "tablespoon", "tablespoons", "Tbsp.", " Tbls.", " Tb.", " T." ],
   "units": null,
-  "g": [ "Gramm", "gramm", "g", "gr." ],
-  "ml": [ "milliter", "milliters", "ml." ]
+  "g": [ "Gram", "gram", "g", "gr." ],
+  "ml": [ "milliliter", "milliliters", "ml." ],
+  "sticks": [ "stick" ]
 }
 

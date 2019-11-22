@@ -18,7 +18,7 @@
             <ToolbarItem
                 Clicked="AddImageButton_Click"
                 IconImageSource="@drawable/ic_noimage"
-                Text="To Title" />
+                Text="Image" />
             <ToolbarItem
                 Clicked="SaveButton_Click"
                 IconImageSource = "@drawable/ic_action_content_save"
@@ -36,29 +36,22 @@
 
             <Entry x:Name="titleEdit" Text="Title" Grid.Column="0" Grid.Row="0"/>
 
-            <ListView x:Name="ingredientsView"   SelectionMode="Single" ItemTapped="EditIngredientsButtonOnClick" Grid.Column="0" Grid.Row="1">
+            <ListView x:Name="ingredientsView"   SelectionMode="Single" ItemTapped="EditIngredientsButtonOnClick" Grid.Column="0" Grid.Row="1" HasUnevenRows="True">
                 <ListView.Header>
-                    <StackLayout 
-                                 Orientation="Horizontal"
-                                 HorizontalOptions="FillAndExpand"
-                                 BackgroundColor="#dadada">
-                        <Label Text="Ingredients"
+                    <Label Text="Ingredients"
                                HorizontalTextAlignment="Center"
-                               HorizontalOptions="FillAndExpand"
-                               TextColor="Black"
-                               FontAttributes="Bold"/>
-                    </StackLayout>
+                               HorizontalOptions="FillAndExpand"/>
                 </ListView.Header>
-                <ListView.ItemTemplate >
+                <!--<ListView.ItemTemplate >
                     <DataTemplate>
                         <EntryCell Text="{Binding Unparsed}" />
                     </DataTemplate>
-                </ListView.ItemTemplate>
+                </ListView.ItemTemplate>-->
                 </ListView>
 
             <Frame BorderColor="Red" Grid.Column="0" Grid.Row="2">
                 <WebView x:Name="recepiePreview" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
-                         Source="https://www.linkedin.com/notifications/"/>
+                         HeightRequest="1000" WidthRequest="1000"/>
             </Frame>                
                     <!--android:contextClickable="true"
                     android:saveEnabled="true"

@@ -16,7 +16,7 @@
 
             <StackLayout Orientation="Horizontal">
                 <Label Text="Suggested:"/>
-                <Label Text="Text" x:Name="suggestedText" />
+                <Label Text="{Binding Path=ToString }" x:Name="suggestedText" />
             </StackLayout>
 
             <Grid x:Name="DataGrid">
@@ -37,7 +37,7 @@
                 <Entry Text="{Binding Amount, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" />
 
                 <Label Text="Units" Grid.Row="2" Grid.Column="0"/>
-                <Picker SelectedItem="{Binding Units, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" />
+                <Picker x:Name="UnitsPicker" SelectedItem="{Binding Units, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" />
 
                 <Label Text="Item" Grid.Row="3" Grid.Column="0"/>
                 <Entry Text="{Binding Item, Mode=TwoWay}" Grid.Row="3" Grid.Column="1"/>
