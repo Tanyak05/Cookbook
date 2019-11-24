@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -43,9 +44,22 @@ namespace Cookbook2
             TextMethod.Source = new HtmlWebViewSource() { Html = Recipe.Method};
         }
 
-        private void EditRecipePage(object sender, EventArgs e)
+        private async void EditRecipePage(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            await Navigation.PushAsync(new ParseRecipePage(Recipe));
+        }
+
+        private async void DeleteRecipePage(object sender, EventArgs e)
+        {
+            //todo: add warning
+            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            documentsPath = Path.Combine(documentsPath, "recipes");
+            documentsPath = Path.Combine(documentsPath, Recipe.RecipeShort.Id + ".json");
+            File.Delete(documentsPath);
+
+            await LocalDatabase.Database.DeleteItemAsync(Recipe.RecipeShort);
+            ((MainPage)Navigation.NavigationStack.ElementAt(Navigation.NavigationStack.Count-2)).DeleteFromList(Recipe.RecipeShort);
+            await Navigation.PopAsync();
         }
     }
 }

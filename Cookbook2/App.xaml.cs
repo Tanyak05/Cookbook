@@ -2,8 +2,7 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Cookbook2.Services;
-using Cookbook2.Views;
+
 
 namespace Cookbook2
 {
@@ -20,10 +19,6 @@ namespace Cookbook2
         {
             InitializeComponent();
 
-            if (UseMockDataStore)
-                DependencyService.Register<MockDataStore>();
-            else
-                DependencyService.Register<AzureDataStore>();
             MainPage = new NavigationPage(new MainPage());
         }
 

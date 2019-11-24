@@ -9,6 +9,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Edit" Clicked="EditRecipePage" />
+        <ToolbarItem Text="Delete" Clicked="DeleteRecipePage" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Orientation="Vertical">
@@ -33,4 +34,5 @@
         <WebView x:Name="TextMethod" WidthRequest="1000" HeightRequest="1000" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 
     </StackLayout>
+
 </ContentPage>

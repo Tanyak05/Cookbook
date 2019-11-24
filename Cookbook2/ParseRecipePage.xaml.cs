@@ -2,7 +2,6 @@
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,7 +13,8 @@ namespace Cookbook2
     [XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ParseRecipePage : ContentPage
 	{
-        public ObservableCollection<Ingredient> Ingredients { get; set; } 
+        public ObservableCollection<Ingredient> Ingredients { get; set; }
+        public Recipe CurrentRecipe { get; set; }
         private HtmlWebViewSource htmlSource;
 
         public ParseRecipePage ()
@@ -22,6 +22,17 @@ namespace Cookbook2
             InitializeComponent ();
             Ingredients = new ObservableCollection<Ingredient>();
             IngredientsView.ItemsSource = Ingredients;
+            LoadData();
+        }
+
+        public ParseRecipePage(Recipe recipe)
+        {
+            InitializeComponent();
+            CurrentRecipe = recipe;
+            Ingredients = new ObservableCollection<Ingredient>(recipe.Ingredients);
+            IngredientsView.ItemsSource = Ingredients;
+            TitleEdit.Text = recipe.RecipeShort.Title;
+            BindingContext = recipe.Method;
             LoadData();
         }
 
@@ -96,22 +107,25 @@ namespace Cookbook2
             int start = htmlSource.Html.IndexOf(value, StringComparison.Ordinal) + value.Length;
             int end = htmlSource.Html.IndexOf("</textarea>", StringComparison.Ordinal);
 
-            Recipe res = new Recipe
+            if (CurrentRecipe == null)
             {
-                RecipeShort = new RecipeShort(Guid.NewGuid().ToString(), TitleEdit.Text),
-                Method = htmlSource.Html.Substring(start,end-start+1),
-                Ingredients = Ingredients.ToList()
-            };
+                CurrentRecipe = new Recipe
+                {
+                    RecipeShort = new RecipeShort(Guid.NewGuid().ToString(), TitleEdit.Text),
+                    Method = htmlSource.Html.Substring(start, end - start + 1),
+                    Ingredients = Ingredients.ToList()
+                };
+            }
 
-            string recipeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(res);
+            string recipeSerialized = Newtonsoft.Json.JsonConvert.SerializeObject(CurrentRecipe);
 
             // Documents folder
-            documentsPath = Path.Combine(documentsPath, res.RecipeShort.Id + ".json");
+            documentsPath = Path.Combine(documentsPath, CurrentRecipe.RecipeShort.Id + ".json");
             using (StreamWriter file = File.CreateText(documentsPath))
             {
                 file.Write(recipeSerialized);
             }
-            await LocalDatabase.Database.SaveItemAsync<RecipeShort>(res.RecipeShort);
+            await LocalDatabase.Database.SaveItemAsync<RecipeShort>(CurrentRecipe.RecipeShort);
 
             await Navigation.PopAsync();
 

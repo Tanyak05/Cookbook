@@ -40,7 +40,12 @@ namespace Cookbook2
                 return;
 
             await Navigation.PushAsync( new ViewRecipePage((RecipeShort) itemTappedEventArgs.Item));
-            ((ListView)sender).SelectedItem = null;
+        }
+
+        public void DeleteFromList(RecipeShort recipe)
+        {
+            Recipes.Delete(recipe);
+            ShortRecipeList.ItemsSource = Recipes.items;
         }
 
         private async void GeneralAddButton_Click(object sender, EventArgs e)

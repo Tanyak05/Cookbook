@@ -33,7 +33,7 @@
                 <RowDefinition Height="2*" />
             </Grid.RowDefinitions>
 
-            <Entry x:Name="TitleEdit" Text="Title" Grid.Column="0" Grid.Row="0"/>
+            <Entry x:Name="TitleEdit" Text="Title" Grid.Column="0" Grid.Row="0" />
 
             <ListView x:Name="IngredientsView"   SelectionMode="Single" ItemTapped="EditIngredientsButtonOnClick" Grid.Column="0" Grid.Row="1" HasUnevenRows="True">
                 <ListView.Header>

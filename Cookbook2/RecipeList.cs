@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Xamarin.Forms.Internals;
 
 namespace Cookbook2
 {
@@ -14,6 +16,12 @@ namespace Cookbook2
 		{
             items = new List<RecipeShort>(LocalDatabase.Database.GetItemsAsync<RecipeShort>().Result);
 		}
+
+        public void Delete(RecipeShort recipe)
+        {
+            int ind = items.IndexOf(el => el.Id == recipe.Id);
+            items.RemoveAt(ind);
+        }
     }
 }
 
