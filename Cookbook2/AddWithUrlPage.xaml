@@ -6,9 +6,16 @@
              x:Class="Cookbook2.AddWithUrlPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Start  Translate"/>
-        <ToolbarItem Text="Save"/>
-        <ToolbarItem Text="Start Parsing" Clicked="ParesSelectionButton_Click" />
+        <ToolbarItem 
+            IconImageSource="@drawable/icons8_translation_50" 
+            Text="Translate" />
+        <ToolbarItem
+            IconImageSource="@drawable/icons8_save_50" 
+            Text="Save"/>
+        <ToolbarItem 
+            IconImageSource="@drawable/icons8_map_50" 
+            Text="Start Parsing" 
+            Clicked="ParesSelectionButton_Click" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

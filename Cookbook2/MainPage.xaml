@@ -7,8 +7,17 @@
              x:Class="Cookbook2.MainPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="From Url "    Clicked="AddWithUrlButton_Click" />
-        <ToolbarItem Text="From Clipboard" Clicked="AddFromClipboardButton_Click" />
+        <ToolbarItem 
+            IconImageSource="@drawable/icons8_link_50" 
+            Text="From Url "    
+            Clicked="AddWithUrlButton_Click" />
+        <ToolbarItem 
+            IconImageSource="@drawable/icons8_paste_50" 
+            Text="From Clipboard" 
+            Clicked="AddFromClipboardButton_Click" />
+        <ToolbarItem 
+            IconImageSource="@drawable/icons8_create_50" 
+            Text="Manualy" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

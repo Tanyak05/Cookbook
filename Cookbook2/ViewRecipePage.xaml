@@ -8,8 +8,14 @@
              x:Class="Cookbook2.ViewRecipePage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit" Clicked="EditRecipePage" />
-        <ToolbarItem Text="Delete" Clicked="DeleteRecipePage" />
+        <ToolbarItem 
+            IconImageSource="@drawable/icons8_edit_50" 
+            Text="Edit" 
+            Clicked="EditRecipePage" />
+        <ToolbarItem 
+            IconImageSource="@drawable/icons8_trash_can_50" 
+            Text="Delete" 
+            Clicked="DeleteRecipePage" />
     </ContentPage.ToolbarItems>
 
     <StackLayout Orientation="Vertical">

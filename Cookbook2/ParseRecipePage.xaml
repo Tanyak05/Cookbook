@@ -17,11 +17,11 @@
                 Text="To Ingredients" />
             <ToolbarItem
                 Clicked="AddImageButton_Click"
-                IconImageSource="@drawable/ic_noimage"
+                IconImageSource="@drawable/icons8_photo_gallery_50"
                 Text="Image" />
             <ToolbarItem
                 Clicked="SaveButton_Click"
-                IconImageSource = "@drawable/ic_action_content_save"
+                IconImageSource = "@drawable/icons8_save_50"
                 Text="Save" />
     </ContentPage.ToolbarItems>
 
