@@ -113,12 +113,6 @@
     <PackageReference Include="TEditor">
       <Version>1.0.3</Version>
     </PackageReference>
-    <PackageReference Include="UXDivers.GorillaPlayer.Common">
-      <Version>0.9.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="UXDivers.GorillaPlayer.SDK">
-      <Version>1.5.5</Version>
-    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>4.0.1.5</Version>
     </PackageReference>
