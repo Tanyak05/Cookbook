@@ -8418,43 +8418,40 @@ namespace Cookbook
 			public const int ingredients = 2131623989;
 			
 			// aapt resource value: 0x7F0E0036
-			public const int library_name = 2131623990;
+			public const int method = 2131623990;
 			
 			// aapt resource value: 0x7F0E0037
-			public const int method = 2131623991;
+			public const int mtrl_chip_close_icon_content_description = 2131623991;
 			
 			// aapt resource value: 0x7F0E0038
-			public const int mtrl_chip_close_icon_content_description = 2131623992;
+			public const int password_toggle_content_description = 2131623992;
 			
 			// aapt resource value: 0x7F0E0039
-			public const int password_toggle_content_description = 2131623993;
+			public const int path_password_eye = 2131623993;
 			
 			// aapt resource value: 0x7F0E003A
-			public const int path_password_eye = 2131623994;
+			public const int path_password_eye_mask_strike_through = 2131623994;
 			
 			// aapt resource value: 0x7F0E003B
-			public const int path_password_eye_mask_strike_through = 2131623995;
+			public const int path_password_eye_mask_visible = 2131623995;
 			
 			// aapt resource value: 0x7F0E003C
-			public const int path_password_eye_mask_visible = 2131623996;
+			public const int path_password_strike_through = 2131623996;
 			
 			// aapt resource value: 0x7F0E003D
-			public const int path_password_strike_through = 2131623997;
+			public const int press_color_to_apply = 2131623997;
 			
 			// aapt resource value: 0x7F0E003E
-			public const int press_color_to_apply = 2131623998;
+			public const int search_menu_title = 2131623998;
 			
 			// aapt resource value: 0x7F0E003F
-			public const int search_menu_title = 2131623999;
-			
-			// aapt resource value: 0x7F0E0040
-			public const int status_bar_notification_info_overflow = 2131624000;
-			
-			// aapt resource value: 0x7F0E0042
-			public const int steps = 2131624002;
+			public const int status_bar_notification_info_overflow = 2131623999;
 			
 			// aapt resource value: 0x7F0E0041
-			public const int step_count = 2131624001;
+			public const int steps = 2131624001;
+			
+			// aapt resource value: 0x7F0E0040
+			public const int step_count = 2131624000;
 			
 			static String()
 			{
